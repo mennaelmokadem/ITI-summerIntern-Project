@@ -58,12 +58,9 @@ LightGBM, and CatBoost, and served through a Streamlit form.
   feature, and returns the predicted probability plus a stay/leave call
   based on the tuned threshold.
 
-## Deploying online (free)
+## Deploying online
 
-See [Streamlit Community Cloud](https://streamlit.io/cloud): connect this
-repo, point it at `app.py`, and deploy. Note `model.pkl` and
-`model_meta.pkl` need to be committed to the repo (or otherwise available
-at runtime) since Community Cloud won't run `train_model.py` for you.
+See [Streamlit Community Cloud]([https://streamlit.io/cloud](https://iti-summerintern-project-vptaq6vkugqvh6bcaqeinq.streamlit.app/))
 
 ## Notes / limitations
 
