@@ -13,7 +13,7 @@ import streamlit as st
 
 from preprocessing import engineer_features
 
-st.set_page_config(page_title="CareerShift AI", page_icon=None, layout="wide")
+st.set_page_config(page_title="JobChange Prediction", page_icon=None, layout="wide")
 
 
 @st.cache_resource
@@ -32,7 +32,7 @@ except FileNotFoundError:
     )
     st.stop()
 
-st.title("CareerShift AI")
+st.title("JobChange Prediction")
 st.markdown("### Data-driven job change prediction")
 st.write(
     "Enter the candidate's professional and educational information below "
