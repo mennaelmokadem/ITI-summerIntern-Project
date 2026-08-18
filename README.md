@@ -115,21 +115,6 @@ https://iti-summerintern-project-vptaq6vkugqvh6bcaqeinq.streamlit.app/
 
 ---
 
-## Technologies Used
-
-- **Python**
-- **Pandas**
-- **NumPy**
-- **Scikit-learn**
-- **Matplotlib**
-- **Seaborn**
-- **XGBoost**
-- **Streamlit**
-- **Jupyter Notebook**
-- **Kaggle**
-
----
-
 ## Project Structure
 
 ```text
@@ -141,71 +126,4 @@ ITI-Summer-Intern-Project/
 │
 └── app/
     └── streamlit_app.py
-```
-
-> The exact file structure may vary depending on the final GitHub repository organization.
-
 ---
-
-## How to Run the Project Locally
-
-### 1. Clone the repository
-
-```bash
-git clone <your-github-repository-url>
-cd <repository-name>
-```
-
-### 2. Install the required libraries
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run the Streamlit application
-
-```bash
-streamlit run streamlit_app.py
-```
-
-The application will then be available through the Streamlit URL shown in the terminal.
-
----
-
-## Key Learning Outcomes
-
-Through this project, I gained practical experience in:
-
-- End-to-end machine learning workflows
-- Exploratory data analysis
-- Data preprocessing
-- Feature engineering
-- Handling imbalanced datasets
-- Model selection and comparison
-- Hyperparameter tuning
-- Classification threshold optimization
-- Model evaluation
-- Machine learning deployment using Streamlit
-
----
-
-## Acknowledgment
-
-A special thank you to **Eng. Raheeq** for her continuous effort, guidance, and supervision throughout the project.
-
-Her support and feedback were an important part of this learning experience during the **ITI AI Summer Internship**.
-
----
-
-## Internship
-
-**AI Summer Internship — Information Technology Institute (ITI)**
-
-This project represents one of the practical applications developed during the internship, providing hands-on experience in applying machine learning techniques to a real-world-style classification problem.
-
----
-
-## Useful Links
-
-- **Kaggle Dataset:** https://www.kaggle.com/datasets/arashnic/hr-analytics-job-change-of-data-scientists
-- **Live Streamlit App:** https://iti-summerintern-project-vptaq6vkugqvh6bcaqeinq.streamlit.app/
