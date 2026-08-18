@@ -33,7 +33,7 @@ except FileNotFoundError:
     st.stop()
 
 st.title("JobChange Prediction")
-st.markdown("### Data-driven job change prediction")
+st.markdown('<div class="app-subtitle">Data-driven job change prediction</div>', unsafe_allow_html=True)
 st.write(
     "Enter the candidate's professional and educational information below "
     "to estimate the likelihood of seeking a new job opportunity."
@@ -42,6 +42,22 @@ st.write(
 st.markdown(
     """
     <style>
+        :root {
+            --navy: #0F172A;
+            --blue: #2563EB;
+            --teal: #0F766E;
+            --teal-light: #14B8A6;
+            --background: #F8FAFC;
+            --card: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+        }
+
+        .stApp {
+            background-color: #F8FAFC;
+        }
+
         .block-container {
             max-width: 1100px;
             padding-top: 2.5rem;
@@ -49,36 +65,102 @@ st.markdown(
         }
 
         h1 {
+            color: #0F172A !important;
             font-size: 2.6rem !important;
-            font-weight: 700 !important;
-            margin-bottom: 0.2rem !important;
+            font-weight: 750 !important;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.15rem !important;
         }
 
         h3 {
-            font-weight: 500 !important;
+            color: #0F172A !important;
+            font-weight: 650 !important;
             margin-bottom: 0.8rem !important;
         }
 
+        p {
+            color: #64748B;
+        }
+
         div[data-testid="stForm"] {
-            border: 1px solid rgba(128, 128, 128, 0.25);
-            border-radius: 12px;
-            padding: 1.5rem 1.75rem;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 14px;
+            padding: 1.7rem 1.9rem;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
         }
 
         div[data-testid="stMetric"] {
-            padding: 1rem 1.25rem;
-            border: 1px solid rgba(128, 128, 128, 0.25);
-            border-radius: 10px;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-left: 4px solid #0F766E;
+            border-radius: 12px;
+            padding: 1.1rem 1.35rem;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+        }
+
+        div[data-testid="stMetricLabel"] {
+            color: #64748B !important;
+            font-weight: 600;
+        }
+
+        div[data-testid="stMetricValue"] {
+            color: #0F172A !important;
+            font-weight: 750;
+        }
+
+        div.stButton > button,
+        div[data-testid="stFormSubmitButton"] > button {
+            background: #0F766E;
+            color: #FFFFFF;
+            border: 1px solid #0F766E;
+            border-radius: 9px;
+            font-weight: 650;
+            min-height: 2.8rem;
+            transition: all 0.2s ease;
+        }
+
+        div.stButton > button:hover,
+        div[data-testid="stFormSubmitButton"] > button:hover {
+            background: #115E59;
+            border-color: #115E59;
+            color: #FFFFFF;
+        }
+
+        div[data-baseweb="select"] > div,
+        div[data-baseweb="input"] > div {
+            border-radius: 8px;
+        }
+
+        div[data-baseweb="select"] > div:focus-within,
+        div[data-baseweb="input"] > div:focus-within {
+            border-color: #0F766E !important;
+            box-shadow: 0 0 0 1px #0F766E !important;
+        }
+
+        div[data-testid="stSlider"] [role="slider"] {
+            background-color: #0F766E;
         }
 
         .section-label {
-            font-size: 0.9rem;
-            font-weight: 600;
+            color: #0F766E;
+            font-size: 0.78rem;
+            font-weight: 750;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            opacity: 0.7;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.12em;
+            margin-top: 0.8rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .app-subtitle {
+            color: #64748B;
+            font-size: 1.05rem;
+            margin-bottom: 1.7rem;
+        }
+
+        .result-note {
+            color: #64748B;
+            font-size: 0.85rem;
         }
     </style>
     """,
@@ -157,8 +239,3 @@ if submitted:
         st.warning("Prediction: **Likely to be looking for a new job**")
     else:
         st.success("Prediction: **Likely to remain in the current role**")
-
-    st.caption(
-        f"Classification threshold: {meta['threshold']:.3f}. "
-        "The probability shown above is the underlying model score and should be interpreted as an estimate, not a certainty."
-    )
