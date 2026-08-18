@@ -43,19 +43,19 @@ st.markdown(
     """
     <style>
         :root {
-            --navy: #0F172A;
+            --navy: #E6EDF7;
             --blue: #2563EB;
-            --teal: #0F766E;
-            --teal-light: #14B8A6;
-            --background: #F8FAFC;
-            --card: #FFFFFF;
-            --text: #1E293B;
-            --muted: #64748B;
-            --border: #E2E8F0;
+            --teal: #0D9488;
+            --teal-light: #2DD4BF;
+            --background: #070B14;
+            --card: #0D1421;
+            --text: #CBD5E1;
+            --muted: #94A3B8;
+            --border: #243044;
         }
 
         .stApp {
-            background-color: #F8FAFC;
+            background-color: #070B14;
         }
 
         .block-container {
@@ -65,7 +65,7 @@ st.markdown(
         }
 
         h1 {
-            color: #0F172A !important;
+            color: #E6EDF7 !important;
             font-size: 2.6rem !important;
             font-weight: 750 !important;
             letter-spacing: -0.03em;
@@ -73,47 +73,47 @@ st.markdown(
         }
 
         h3 {
-            color: #0F172A !important;
+            color: #E6EDF7 !important;
             font-weight: 650 !important;
             margin-bottom: 0.8rem !important;
         }
 
         p {
-            color: #64748B;
+            color: #94A3B8;
         }
 
         div[data-testid="stForm"] {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
+            background: #0D1421;
+            border: 1px solid #243044;
             border-radius: 14px;
             padding: 1.7rem 1.9rem;
-            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
         }
 
         div[data-testid="stMetric"] {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-left: 4px solid #0F766E;
+            background: #0D1421;
+            border: 1px solid #243044;
+            border-left: 4px solid #0D9488;
             border-radius: 12px;
             padding: 1.1rem 1.35rem;
-            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
         }
 
         div[data-testid="stMetricLabel"] {
-            color: #64748B !important;
+            color: #94A3B8 !important;
             font-weight: 600;
         }
 
         div[data-testid="stMetricValue"] {
-            color: #0F172A !important;
+            color: #E6EDF7 !important;
             font-weight: 750;
         }
 
         div.stButton > button,
         div[data-testid="stFormSubmitButton"] > button {
-            background: #0F766E;
-            color: #FFFFFF;
-            border: 1px solid #0F766E;
+            background: #0D9488;
+            color: #0D1421;
+            border: 1px solid #0D9488;
             border-radius: 9px;
             font-weight: 650;
             min-height: 2.8rem;
@@ -122,9 +122,9 @@ st.markdown(
 
         div.stButton > button:hover,
         div[data-testid="stFormSubmitButton"] > button:hover {
-            background: #115E59;
-            border-color: #115E59;
-            color: #FFFFFF;
+            background: #0F766E;
+            border-color: #0F766E;
+            color: #0D1421;
         }
 
         div[data-baseweb="select"] > div,
@@ -134,16 +134,16 @@ st.markdown(
 
         div[data-baseweb="select"] > div:focus-within,
         div[data-baseweb="input"] > div:focus-within {
-            border-color: #0F766E !important;
-            box-shadow: 0 0 0 1px #0F766E !important;
+            border-color: #0D9488 !important;
+            box-shadow: 0 0 0 1px #0D9488 !important;
         }
 
         div[data-testid="stSlider"] [role="slider"] {
-            background-color: #0F766E;
+            background-color: #0D9488;
         }
 
         .section-label {
-            color: #0F766E;
+            color: #0D9488;
             font-size: 0.78rem;
             font-weight: 750;
             text-transform: uppercase;
@@ -153,13 +153,13 @@ st.markdown(
         }
 
         .app-subtitle {
-            color: #64748B;
+            color: #94A3B8;
             font-size: 1.05rem;
             margin-bottom: 1.7rem;
         }
 
         .result-note {
-            color: #64748B;
+            color: #94A3B8;
             font-size: 0.85rem;
         }
     </style>
@@ -236,6 +236,18 @@ if submitted:
     st.metric("Estimated probability of seeking a new job", f"{proba:.1%}")
 
     if prediction == 1:
-        st.warning("Prediction: **Likely to be looking for a new job**")
+        st.markdown(
+            '<div style="background:#2A2110;border:1px solid #7C5A10;'
+            'border-radius:10px;padding:1rem;color:#F4D06F;">'
+            '<strong>Prediction:</strong> Likely to be looking for a new job'
+            '</div>',
+            unsafe_allow_html=True,
+        )
     else:
-        st.success("Prediction: **Likely to remain in the current role**")
+        st.markdown(
+            '<div style="background:#0A2723;border:1px solid #0D766A;'
+            'border-radius:10px;padding:1rem;color:#7DE2D1;">'
+            '<strong>Prediction:</strong> Likely to remain in the current role'
+            '</div>',
+            unsafe_allow_html=True,
+        )
