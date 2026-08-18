@@ -13,7 +13,7 @@ import streamlit as st
 
 from preprocessing import engineer_features
 
-st.set_page_config(page_title="Job Change Predictor", layout="centered")
+st.set_page_config(page_title="CareerShift AI", page_icon=None, layout="wide")
 
 
 @st.cache_resource
@@ -32,15 +32,68 @@ except FileNotFoundError:
     )
     st.stop()
 
-st.title("Smart Recruitment Assistant")
-st.write("Fill in a candidate's details to estimate the probability they're looking for a new job.")
+st.title("CareerShift AI")
+st.markdown("### Data-driven job change prediction")
+st.write(
+    "Enter the candidate's professional and educational information below "
+    "to estimate the likelihood of seeking a new job opportunity."
+)
+
+st.markdown(
+    """
+    <style>
+        .block-container {
+            max-width: 1100px;
+            padding-top: 2.5rem;
+            padding-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.6rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 0.2rem !important;
+        }
+
+        h3 {
+            font-weight: 500 !important;
+            margin-bottom: 0.8rem !important;
+        }
+
+        div[data-testid="stForm"] {
+            border: 1px solid rgba(128, 128, 128, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+        }
+
+        div[data-testid="stMetric"] {
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(128, 128, 128, 0.25);
+            border-radius: 10px;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown('<div class="section-label">Candidate Profile</div>', unsafe_allow_html=True)
 
 known_cities = meta["known_cities"]
 
 with st.form("candidate_form"):
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2, gap="large")
 
     with col1:
+        st.markdown("#### Personal and Educational Information")
         city = st.selectbox("City", options=known_cities, index=known_cities.index("city_103") if "city_103" in known_cities else 0)
         city_development_index = st.slider("City development index", 0.4, 1.0, 0.9, 0.001)
         gender = st.selectbox("Gender", ["Male", "Female", "Other", "Prefer not to say"])
@@ -58,6 +111,7 @@ with st.form("candidate_form"):
         )
 
     with col2:
+        st.markdown("#### Professional Information")
         experience = st.slider("Years of experience", 0, 21, 5, help="21 represents '>20 years'")
         company_size = st.selectbox(
             "Company size", ["<10", "10/49", "50-99", "100-500", "500-999", "1000-4999", "5000-9999", "10000+", "Unknown"]
@@ -71,7 +125,7 @@ with st.form("candidate_form"):
         )
         training_hours = st.number_input("Training hours completed", min_value=1, max_value=336, value=50)
 
-    submitted = st.form_submit_button("Predict")
+    submitted = st.form_submit_button("Estimate Job Change Likelihood", use_container_width=True)
 
 if submitted:
     # "Unknown" / "Prefer not to say" selections map back to real NaN so the
@@ -96,14 +150,15 @@ if submitted:
     prediction = int(proba >= meta["threshold"])
 
     st.divider()
-    st.metric("Probability of looking for a new job", f"{proba:.1%}")
+    st.markdown("### Prediction Result")
+    st.metric("Estimated probability of seeking a new job", f"{proba:.1%}")
 
     if prediction == 1:
-        st.warning("Prediction: **Likely looking for a new job**")
+        st.warning("Prediction: **Likely to be looking for a new job**")
     else:
-        st.success("Prediction: **Likely to stay**")
+        st.success("Prediction: **Likely to remain in the current role**")
 
     st.caption(
-        f"Classified using the tuned threshold ({meta['threshold']:.3f}); "
-        "the probability above is the underlying model score."
+        f"Classification threshold: {meta['threshold']:.3f}. "
+        "The probability shown above is the underlying model score and should be interpreted as an estimate, not a certainty."
     )
